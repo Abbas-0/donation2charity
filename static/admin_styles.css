@@ -1,0 +1,526 @@
+/* General Styles */
+body.admin-page {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Admin Login Page Styles */
+.admin-container {
+    background-color: #2d2d42;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.admin-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #28a745;
+}
+
+.admin-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-container label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #fff;
+}
+
+.admin-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #3a3a52;
+    color: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-container input:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+    outline: none;
+}
+
+.admin-container button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+	width: 100%; /* Ensure button takes full width */
+}
+
+.admin-container button:hover {
+    background-color: #218838;
+}
+
+/* Error Message */
+.admin-container p {
+    font-size: 0.9rem;
+    color: red;
+    margin-bottom: 15px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    background-color: #2d2d42;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    transition: width 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 90vh; /* Set a fixed height for the dashboard container */
+    overflow: hidden; /* Prevent the entire dashboard from scrolling */
+}
+
+.dashboard-container.expanded {
+    width: 95%;
+    max-width: 1400px;
+}
+
+/* Header with Logout Button */
+.header {
+    display: flex;
+    justify-content: space-between; /* Space between h1 and logout button */
+    align-items: center; /* Vertically center items */
+    margin-bottom: 20px; /* Space below the header */
+}
+
+.header h1 {
+    font-size: 2rem;
+    color: #28a745;
+    margin: 0; /* Remove default margin */
+}
+
+/* Logout Button */
+.logout-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Smaller padding */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem; /* Smaller font size */
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.navigation-buttons button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navigation-buttons button.active {
+    background-color: #218838;
+}
+
+.navigation-buttons button:hover {
+    background-color: #218838;
+}
+
+/* Form Sections */
+.form-section {
+    display: none;
+    margin-top: 20px;
+	flex: 1;
+    overflow-y: auto;
+}
+
+.form-section.active-section {
+    display: block;
+}
+
+.form-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #28a745;
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.form-section input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #3a3a52;
+    color: #fff;
+}
+
+.form-section button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-section button:hover {
+    background-color: #218838;
+}
+
+/* Transfers Section */
+#transfers-section {
+    display: none;
+    flex: 1; /* Allow the transfers section to take up remaining space */
+    overflow: hidden; /* Prevent overflow */
+    flex-direction: column;
+}
+
+#transfers-section.active-section {
+    display: flex;
+}
+
+/* Top Donators Section */
+#top-donators {
+    margin-bottom: 20px;
+}
+
+#top-donators h3 {
+    font-size: 1.2rem; /* Smaller font size */
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+#top-donators-list {
+    display: flex;
+    gap: 15px; /* Smaller gap */
+    margin-bottom: 15px;
+}
+
+.top-donator {
+    background-color: #3a3a52;
+    padding: 10px; /* Smaller padding */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-align: center;
+    flex: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.top-donator.glow {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+    transform: scale(1.05);
+}
+
+.top-donator h4 {
+    font-size: 1rem; /* Smaller font size */
+    margin-bottom: 5px;
+}
+
+.top-donator p {
+    font-size: 0.9rem; /* Smaller font size */
+    margin: 3px 0;
+}
+
+/* Latest Transfers List */
+#latest-transfers-list {
+    flex: 1; /* Allow the list to take up remaining space */
+    overflow-y: auto; /* Make the list scrollable */
+    padding-right: 10px; /* Add padding to prevent scrollbar overlap */
+    margin-top: 10px; /* Smaller margin */
+    max-height: 400px; /* Set a max height for the scrollable area */
+}
+
+.transfer-item {
+    background-color: #3a3a52;
+    padding: 10px; /* Smaller padding */
+    border-radius: 8px;
+    margin-bottom: 10px; /* Smaller margin */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.transfer-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.transfer-item p {
+    margin: 3px 0; /* Smaller margin */
+    font-size: 0.9rem; /* Smaller font size */
+}
+
+.transfer-item hr {
+    border: 0;
+    border-top: 1px solid #444;
+    margin: 8px 0; /* Smaller margin */
+}
+
+/* Download Button */
+#download-history {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Smaller padding */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px; /* Space below the button */
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem; /* Smaller font size */
+}
+
+#download-history:hover {
+    background-color: #218838;
+}
+
+/* Popup Styles */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background-color: #2d2d42;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 350px;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+.popup-content h3 {
+    margin-top: 0;
+    color: #fff;
+}
+
+.popup-content button {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s ease;
+}
+
+.popup-content button:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+}
+#add-event-section {
+  height: calc(100% - 100px); /* Adjust 100px to the combined height of header/navigation */
+  overflow-y: auto;
+}
+/* Modal Styles for Editing Events */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal .modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;  /* Increased max width for better layout */
+  box-sizing: border-box;
+  position: relative; /* Needed for positioning the close button */
+  overflow-y: auto;
+}
+
+/* Close Button as a Red Cross at Top Right */
+.modal .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: red;
+  cursor: pointer;
+}
+
+/* Form styling inside the modal */
+.modal .modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Label styling */
+.modal .modal-content label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Input & Textarea styling */
+.modal .modal-content input,
+.modal .modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Submit Button styling */
+.modal .modal-content button[type="submit"] {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.modal .modal-content button[type="submit"]:hover {
+  background: #218838;
+}
+
+/* Container for event cards */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start;
+  padding: 16px;
+}
+
+/* Event Card Styles */
+.event-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 280px;              /* fixed width for consistency */
+  padding: 16px;
+  margin: 8px;
+  box-sizing: border-box;    /* include padding and border in width */
+  word-wrap: break-word;     /* ensure long text wraps */
+  transition: transform 0.2s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Ensure the event image fits within the card */
+.event-card img.event-image {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+/* Styling for text inside event cards */
+.event-card h3 {
+  font-size: 1.2rem;
+  margin: 8px 0;
+  color: #333;
+}
+
+.event-card p {
+  font-size: 0.9rem;
+  margin: 4px 0;
+  color: #555;
+}
+
+/* Progress bar styles */
+.progress-bar {
+  background: #eee;
+  border-radius: 5px;
+  width: 100%;
+  height: 10px;
+  margin: 10px 0;
+}
+
+.progress {
+  background: #28a745;
+  height: 100%;
+  border-radius: 5px;
+}

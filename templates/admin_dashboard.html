@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin_styles.css') }}" />
+</head>
+<body class="admin-page">
+  <div class="dashboard-container">
+    <!-- Header with Logout Button -->
+    <div class="header">
+      <h1>Admin Dashboard</h1>
+      <a href="{{ url_for('admin_logout') }}" class="logout-button">Logout</a>
+    </div>
+
+    <!-- Navigation Buttons for Admin Functions -->
+    <div class="navigation-buttons">
+      <button id="show-adjust-balance" class="active">Adjust Balance</button>
+      <button id="show-transfers">Transfer History</button>
+      <button id="show-remove-user">Remove User</button>
+      <button id="show-edit-user">Edit User</button>
+      <button id="show-add-event">Add Event</button>
+      <button id="show-events">View Events</button>
+    </div>
+
+    <!-- Adjust Balance Section -->
+    <div id="adjust-balance-section" class="form-section active-section">
+      <h2>Adjust Balance</h2>
+      <form id="adjust-balance-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <label for="amount-add">Amount to Add:</label>
+        <input type="number" id="amount-add" name="amount_add" step="0.01" />
+        <label for="amount-remove">Amount to Remove:</label>
+        <input type="number" id="amount-remove" name="amount_remove" step="0.01" />
+        <label for="amount-replace">Amount to Replace:</label>
+        <input type="number" id="amount-replace" name="amount_replace" step="0.01" />
+        <button type="submit">Adjust Balance</button>
+      </form>
+    </div>
+
+    <!-- Transfer History Section -->
+    <div id="transfers-section" class="form-section">
+      <h2>Transfer History</h2>
+      <button id="download-history">Download Transaction History</button>
+      <div id="top-donators">
+        <h3>Top 3 Donators</h3>
+        <div id="top-donators-list"></div>
+      </div>
+      <div id="latest-transfers-list">
+        <h3>Latest Transfers</h3>
+      </div>
+    </div>
+
+    <!-- Remove User Section -->
+    <div id="remove-user-section" class="form-section">
+      <h2>Remove User</h2>
+      <form id="remove-user-form">
+        <label for="remove-username">Username:</label>
+        <input type="text" id="remove-username" name="username" required />
+        <button type="submit">Remove User</button>
+      </form>
+    </div>
+
+    <!-- Edit User Section -->
+    <div id="edit-user-section" class="form-section">
+      <h2>Edit User</h2>
+      <form id="edit-user-form">
+        <label for="edit-username">Username:</label>
+        <input type="text" id="edit-username" name="username" required />
+        <label for="edit-daily-limit">Daily Limit (optional):</label>
+        <input type="number" id="edit-daily-limit" name="daily_limit" step="0.01" />
+        <label for="edit-email">Email (optional):</label>
+        <input type="email" id="edit-email" name="email" />
+        <label for="edit-phone">Phone (optional):</label>
+        <input type="text" id="edit-phone" name="phone" />
+        <label for="edit-password">New Password (optional):</label>
+        <input type="password" id="edit-password" name="password" />
+        <button type="submit">Update User</button>
+      </form>
+    </div>
+
+    <!-- Add Event Section -->
+	<div id="add-event-section" class="form-section" style="max-height: 400px; overflow-y: auto;">
+	  <h2>Add Event</h2>
+	  <form id="add-event-form">
+		<label for="event-created-by">Created By (Username):</label>
+		<input type="text" id="event-created-by" name="created_by" required />
+		<label for="event-name">Event Name:</label>
+		<input type="text" id="event-name" name="name" required />
+		<label for="event-description">Description:</label>
+		<textarea id="event-description" name="description"></textarea>
+		<label for="event-start-time">Start Time:</label>
+		<input type="datetime-local" id="event-start-time" name="start_time" required />
+		<label for="event-end-time">End Time:</label>
+		<input type="datetime-local" id="event-end-time" name="end_time" required />
+		<label for="event-goal">Goal:</label>
+		<input type="number" id="event-goal" name="goal" required />
+		<label for="event-image">Image URL:</label>
+		<input type="text" id="event-image" name="image" />
+		<button type="submit">Add Event</button>
+	  </form>
+	</div>
+
+
+    <!-- View Events Section -->
+    <div id="events-section" class="form-section">
+      <h2>View Events</h2>
+      <div id="events-filter">
+        <label for="filter-select-admin">Filter Events:</label>
+        <select id="filter-select-admin">
+          <option value="all">All</option>
+          <option value="ongoing">Ongoing</option>
+          <option value="upcoming">Upcoming</option>
+          <option value="completed">Completed</option>
+        </select>
+        <button id="apply-filter-admin">Apply Filter</button>
+      </div>
+      <div id="events-list" class="card-container">
+        <!-- Event cards will be inserted here -->
+      </div>
+    </div>
+	<!-- Edit Event Modal -->
+	<div id="edit-event-modal" class="modal hidden">
+	  <div class="modal-content">
+		<!-- Close Button -->
+		<span id="close-edit-event-modal" class="close-btn">&times;</span>
+		
+		<h2>Edit Event</h2>
+		<form id="edit-event-form">
+		  <input type="hidden" id="edit-event-id" name="event_id">
+		  <label for="edit-event-name">Event Name:</label>
+		  <input type="text" id="edit-event-name" name="name" required>
+		  
+		  <label for="edit-event-description">Description:</label>
+		  <textarea id="edit-event-description" name="description"></textarea>
+		  
+		  <label for="edit-event-start-time">Start Time:</label>
+		  <input type="datetime-local" id="edit-event-start-time" name="start_time" required>
+		  
+		  <label for="edit-event-end-time">End Time:</label>
+		  <input type="datetime-local" id="edit-event-end-time" name="end_time" required>
+		  
+		  <label for="edit-event-goal">Goal:</label>
+		  <input type="number" id="edit-event-goal" name="goal" required>
+		  
+		  <label for="edit-event-image">Image URL:</label>
+		  <input type="text" id="edit-event-image" name="image">
+		  
+		  <button type="submit">Update Event</button>
+		</form>
+	  </div>
+	</div>
+
+
+
+    <!-- Popup for Success Message -->
+    <div id="popup" class="popup hidden">
+      <div class="popup-content">
+        <h3>Success</h3>
+        <p id="popup-message"></p>
+        <button id="close-popup">OK</button>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div id="message"></div>
+  </div>
+
+  <script type="module" src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

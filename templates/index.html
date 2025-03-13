@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donation 2 Charity</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navigation">
+    <a href="#home">Home</a>
+    <a href="#donation-count">Donation Count</a>
+    <a href="#events">Events</a>
+    <a href="#orgs-need-u">OrgsNeedU</a>
+    <a href="#about-us">About Us</a>
+    <a href="/admin">Admin</a>
+    <a href="#misc">Misc</a>
+  </div>
+
+  <!-- Left Side (Scrollable Sections) -->
+  <div class="left-side">
+    <!-- Donation Count Section -->
+    <div class="section" id="donation-count">
+      <h2>Donation Count</h2>
+      <p>Total donations so far: <strong>10,000</strong></p>
+    </div>
+
+    <!-- Events Section -->
+    <div class="section" id="events">
+      <h2>Events</h2>
+      <!-- Filter UI -->
+      <div id="events-filter">
+        <label for="filter-select">Filter Events:</label>
+        <select id="filter-select">
+          <option value="all">All</option>
+          <option value="ongoing">Ongoing</option>
+          <option value="upcoming">Upcoming</option>
+          <option value="completed">Completed</option>
+        </select>
+        <button id="apply-filter">Apply Filter</button>
+      </div>
+      <!-- Container for event cards -->
+      <div id="events-list" class="card-container">
+        <!-- Event cards will be inserted here by events.js -->
+      </div>
+    </div>
+
+    <!-- OrgsNeedU Section -->
+    <div class="section" id="orgs-need-u">
+      <h2>OrgsNeedU</h2>
+      <p>Organizations in need of your support. Find out how you can help.</p>
+    </div>
+
+    <!-- About Us Section -->
+    <div class="section" id="about-us">
+      <h2>About Us</h2>
+      <p>We are a non-profit organization dedicated to helping those in need through donations and community support.</p>
+    </div>
+
+    <!-- Misc Section -->
+    <div class="section" id="misc">
+      <h2>Misc</h2>
+
+	<!-- Add Balance Form -->
+	<div class="form-section">
+	  <h3>Add Balance</h3>
+	  <form id="add-balance-form">
+		<label for="add-balance-username">Username:</label>
+		<input type="text" id="add-balance-username" name="username" required />
+		<label for="add-balance-amount">Amount:</label>
+		<input type="number" id="add-balance-amount" name="amount" required />
+		<button type="submit">Add Balance</button>
+	  </form>
+	</div>
+      <!-- Messages -->
+      <div id="message"></div>
+    </div>
+  </div>
+
+  <!-- Right Side (User Info and Login/Register) -->
+  <div class="right-side">
+    <div class="user-info">
+      <!-- Login Section -->
+      <div id="login-section">
+        <button id="login-button">Login</button>
+        <div id="login-register-options" class="hidden">
+          <button id="choose-login">Login</button>
+          <button id="choose-register">Register</button>
+        </div>
+      </div>
+      <!-- Login Form -->
+      <div id="login-form" class="hidden">
+        <h3>Login</h3>
+        <form id="login-user-form">
+          <label for="login-username">Username:</label>
+          <input type="text" id="login-username" name="username" required />
+          <label for="login-password">Password:</label>
+          <input type="password" id="login-password" name="password" required />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <!-- Register Form -->
+      <div id="register-form" class="hidden">
+        <h3>Register</h3>
+        <form id="register-user-form">
+          <label for="register-username">Username:</label>
+          <input type="text" id="register-username" name="username" required />
+          <label for="register-password">Password:</label>
+          <input type="password" id="register-password" name="password" required />
+          <label for="register-email">Email:</label>
+          <input type="email" id="register-email" name="email" required />
+          <label for="register-wallet">Wallet Code (26+ characters):</label>
+          <input type="text" id="register-wallet" name="wallet" required minlength="26" />
+          <label for="register-phone">Phone Number:</label>
+          <input type="tel" id="register-phone" name="phone" required />
+          <button type="submit">Register</button>
+        </form>
+      </div>
+      <!-- User Details -->
+      <div id="user-details" class="hidden">
+        <h3 id="user-name">Loading...</h3>
+        <p>Balance: <span id="user-balance">Loading...</span></p>
+        <p>Account Limit Left: <span id="account-limit">Loading...</span></p>
+        <p>Latest Transfer: <span id="latest-transfer">Loading...</span></p>
+        <button id="logout-button">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup for Success Message -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-content">
+      <h3>Success</h3>
+      <p id="popup-message"></p>
+      <button id="close-popup">OK</button>
+    </div>
+  </div>
+
+  <!-- View Event Modal (Read-Only) -->
+	<div id="view-event-modal" class="modal hidden">
+	  <div class="modal-content">
+		<span id="close-view-event-modal" class="close-btn">&times;</span>
+		<h2 id="view-event-name"></h2>
+		<img id="view-event-image" src="" alt="Event Image" class="event-image" />
+		<p id="view-event-description"></p>
+		<p><strong>Start:</strong> <span id="view-event-start-time"></span></p>
+		<p><strong>End:</strong> <span id="view-event-end-time"></span></p>
+		<p><strong>Status:</strong> <span id="view-event-status"></span></p>
+		<div class="progress-bar">
+		  <div id="view-event-progress" class="progress"></div>
+		</div>
+		<p>Donations: $<span id="view-event-current"></span> / $<span id="view-event-goal"></span></p>
+		<button id="donate-to-event">Donate</button>
+	  </div>
+	</div>
+
+  <script>
+    console.log("Inline script is running!");
+  </script>
+  <script type="module" src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

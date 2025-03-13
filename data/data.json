@@ -1,0 +1,39 @@
+{
+    "users": {
+        "testing01": {
+            "balance": 80.0,
+            "donated_today": 20.0,
+            "total_donated": 0,
+            "daily_limit": 500,
+            "password": "$2b$12$lZyWz7GYUD8NKPxWTO5PHudBMJ4BtzST2HX9g5B0gjsefpkTRQ9gC",
+            "email": "testing01@test.com",
+            "wallet": "UyY69Mb56WfEMZbq8ioXatAUpdl",
+            "phone": "7025928432"
+        }
+    },
+    "transfers": [],
+    "events": {
+        "event_1": {
+            "created_by": "testing01",
+            "name": "new event",
+            "description": "test1",
+            "start_time": "2025-03-13T20:00",
+            "end_time": "2025-03-13T20:10",
+            "goal": 100.0,
+            "current_donation": 21.0,
+            "image": "",
+            "donations": [
+                {
+                    "username": "testing01",
+                    "amount": 1,
+                    "timestamp": "2025-03-13T20:47:47.269990"
+                },
+                {
+                    "username": "testing01",
+                    "amount": 20.0,
+                    "timestamp": "2025-03-13T21:05:41.854747"
+                }
+            ]
+        }
+    }
+}
