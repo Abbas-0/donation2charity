@@ -41,6 +41,8 @@ Remember to add your desired CSS and logos as needed.
 
 NOTE: admin login and normal login are seperate pages and both dont open at the same time to check changes so log out from one to check the other
 
+Admin username and password : admin admin
+
 Also refresh the webpage to see updated latest info on balance and such.
 
 Thank You!
